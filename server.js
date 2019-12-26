@@ -1,6 +1,7 @@
 // 4.สร้าง application เรียกใช้ config 
 
 // set stattic env. = check ถ้าไม่เคย set อะไร default ให้เป็น NODE_ENV หรือ development
+                        // ถ้าเคย set เเล้ว run ใหม่ไม่กำหนด NODE_ENV จะ error  
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 const express = require('./config/express')
