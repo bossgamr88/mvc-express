@@ -5,7 +5,6 @@ exports.render = (req,res) => {
 		'title' : 'Hello World',
 		'message' : 'How are things'
 	})
-
 }
 
 /*

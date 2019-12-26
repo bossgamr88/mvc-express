@@ -1,0 +1,77 @@
+** ต้องวางเเผน struct project ใหดี
+ไฟล์ : app/routes/index.routes.js
+
+var index = require('../controllers/index.controller')
+ 
+relative จาก mvc-express/app/controllers/index.controller
+ เป็นการทำงานเเบบ require จะทำงานเมื่อถูกเรียกใช้ 
+คือ เอา code มาเเปะ
+
+
+
+------------>
+ไฟล์ :  server.js
+
+./config/express 
+จะทำงาน ต้อง runtime ด้วยทันที ก็คือ เวลา สั่ง start server 
+ก็จะให้ทำงานทันที 
+
+relative จาก  directory เดียวกันใน ไฟล์  
+จาก mvc-express > config/express
+
+
+------------>
+ไฟล์ : /config/express.js
+
+// relative จาก server.js
+
+app.set('view','./app/views')  
+เบืองหลัง  server.js/app/views 
+
+** เเต่ถ้าเป็น app.set จะทำงานต้อน runtime 
+ดังนั้น ตอนทำงาน app.set จะทำงาน ตอน
+
+- runtime คือ เมื่อทำสั่ง start server
+
+ดังนั้นเวลาทำงาน มันทำงานที่ ไฟล์ ที่เรียก คือ ไฟล์ server.js
+ ดังนั้น path จาก relative จาก server นั้นเอง
+อันไหนที่ ทำงาน ตอน runtime 
+
+จำง่ายๆ คือ 
+- อะไรเป็น require ทำงานตอน  complie time
+ ก็คือทำงานปุ๊ป ไฟล์อยู่ที่ไหน มันก็จะ require เทียบกับ ไฟล์ ณ ตำเเหน่ง นั้นเลย
+
+- เเต่ถ้า อันไหนที่ต้องเริ่มทำงานจาก runtime จะไป relative จาก server.js นั่นเอง
+
+
+ต่างจาก 
+/config/express.js
+
+require('../app/routes/index.routes')(app)
+
+ดังนั้นวิธีดูว่า เมื่อไหร่ควรจะ relative จากจุดไหน ให้ 
+ -> ดูว่า โปรเเกรมมันทำงาน จุดไหน 
+
+require = มันคือทำเลย 
+
+การ ใช้ require เหมือนเอา code ส่วนนั้นมาเเปะ
+** ถ้า require จังหวะไหน เเปลว่ามันอยู่จังหวะ นั้น 
+
+อาทิ ตอนนี้อยู่ใน ไฟล์ config/express  
+ถ้าต้องการนำไฟล์ มาเเปะต้อง relative เอาจากตรงนี้ไปก่อน
+เเล้วค่อยไปเค้า app/routes
+
+---------
+ไฟล์ : app/view/index.jade
+
+link(href='/css/main.css',rel='stylesheet')
+
+img(src='/img/logo.png',alt='Logo')
+
+
+root path คือว่า ตำเเหน่งที่ express.static (search นั่นเอง)
+
+ดังนั้น root path = public/ 
+มันจะสามารถรู้ได้เอง เพราะ set config  ไว้เเล้ว
+
+

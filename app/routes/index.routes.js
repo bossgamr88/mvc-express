@@ -5,8 +5,9 @@ module.exports = (app) =>{
 	// (app) = var app = express() -> (instance express) -> ใน ไฟล์ config  
 	// เวลา call ก็จะส่ง app เข้ามา 
 	var index = require('../controllers/index.controller') 
+	var about = require('../controllers/about.controller')
 	app.get('/',index.render)
-
+	app.get('/about',about.render)
 }
 
 /*
