@@ -1,3 +1,5 @@
+
+// 3. สร้าง config เพื่อสร้าง express instance เเละส่งค่าให้ routes
 // config ค่า ของ express 
 var express = require('express')
 

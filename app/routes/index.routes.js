@@ -1,4 +1,6 @@
 // hadle routes index
+
+// 1. สร้าง routes ไปเรียก controller ของ ฟีเจอร์
 moduls.exports = (app) =>{  
 	// (app) = var app = express() -> (instance express) -> ใน ไฟล์ config  
 	// เวลา call ก็จะส่ง app เข้ามา 
