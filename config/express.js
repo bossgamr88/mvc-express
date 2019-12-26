@@ -21,6 +21,12 @@ module.exports = () => {
 	}))
 	app.use(bodyParser.json())
 
+	// ถ้าไม่ config view จะมองเป็น HTML ธรรมดา
+	app.set('views','./app/views')  // relative จาก server.js
+	// set ว่า เวลา render html template จะใช้ jade view engine
+	app.set('view engine','jade')  
+
+
 	require('../app/routes/index.routes')(app)
 	return app
 
