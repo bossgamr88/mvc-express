@@ -2,6 +2,7 @@ var express = require('express')
 var morgan = require('morgan')
 var compression = require('compression')
 var bodyParser = require('body-parser')
+var cookieSession = require('cookie-session')
 
 module.exports = () => {
 	var app = express()
@@ -11,6 +12,14 @@ module.exports = () => {
 	}else{
 		app.use(compression)
 	}
+
+
+
+	app.use(cookieSession({ // ใส่ไว้ก่อนจะมีการเรียกใช้ cookie 
+		name : 'session',
+		keys : ['secret_key1','secret_key2'] // หมุน key กัน
+	}))
+
 	app.use(bodyParser.urlencoded({ // รองรับ application/x-www-form-urlencoded
 		// true -> ประเภทอะไรก็ได้
 		// false -> string กับ array 
@@ -25,7 +34,7 @@ module.exports = () => {
 
 	// เราต้อง โฟกัส เรื่อง ลำดับ การทำงานของ code ด้วย
 
-	
+
 	require('../app/routes/index.routes')(app)
 	require('../app/routes/user.routes')(app)
 
