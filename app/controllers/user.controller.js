@@ -9,10 +9,17 @@ exports.login = function(req,res){
 
 	// ... 
 	// เช็คว่า ติก remember มารึป่าว คือ value จาก > index.jade (view)
+	// if (req.body.remember === 'remember') {
+	// 	req.session.remember = true // set ค่า ให้ cookie
+	// 	req.session.email = req.body.email; // ให้จำ email ไว้
+	// 	req.sessionOptions.maxAge = 60000 // ตั้งเวลา กำหนดอายุให้กับ session หน่วยเป็น millisecinds
+	// 	// 60000 = 60 วินาที
+	// }
+
 	if (req.body.remember === 'remember') {
 		req.session.remember = true // set ค่า ให้ cookie
 		req.session.email = req.body.email; // ให้จำ email ไว้
-		req.sessionOptions.maxAge = 60000 // ตั้งเวลา กำหนดอายุให้กับ session หน่วยเป็น millisecinds
+		req.session.cookie.maxAge = 60000 // ตั้งเวลา กำหนดอายุให้กับ session หน่วยเป็น millisecinds
 		// 60000 = 60 วินาที
 	}
 

@@ -2,7 +2,8 @@ var express = require('express')
 var morgan = require('morgan')
 var compression = require('compression')
 var bodyParser = require('body-parser')
-var cookieSession = require('cookie-session')
+// var cookieSession = require('cookie-session')
+var session = require('express-session')
 
 module.exports = () => {
 	var app = express()
@@ -15,16 +16,23 @@ module.exports = () => {
 
 
 
-	app.use(cookieSession({ // ใส่ไว้ก่อนจะมีการเรียกใช้ cookie 
-		name : 'session',
-		keys : ['secret_key1','secret_key2'] // หมุน key กัน
+	// app.use(cookieSession({ // ใส่ไว้ก่อนจะมีการเรียกใช้ cookie 
+	// 	name : 'session',
+	// 	keys : ['secret_key1','secret_key2'] // หมุน key กัน
+	// }))
+
+	// เเนะนำให้อ่าน doc api 
+	app.use(session({ // ใส่ไว้ก่อนจะมีการเรียกใช้ cookie 
+		secret : 'secret_key',
+		resave : false,
+		saveUninitialized : true // ถ้าคนเข้า Browser มันก็จะ save ทันที
 	}))
+
 
 	app.use(bodyParser.urlencoded({ // รองรับ application/x-www-form-urlencoded
 		// true -> ประเภทอะไรก็ได้
 		// false -> string กับ array 
 		extended : true	
-
 	}))
 	app.use(bodyParser.json()) // รองรับ application/json
 
